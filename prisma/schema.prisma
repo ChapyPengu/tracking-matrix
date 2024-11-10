@@ -124,15 +124,15 @@ model Recruitment {
 }
 
 model Execution {
-  id           Int     @id @default(autoincrement())
-  currentPhase Int?
-  phases       Phase[]
+  id     Int     @id @default(autoincrement())
+  phases Phase[]
 }
 
 model Phase {
   id          Int       @id @default(autoincrement())
   name        String
-  isComplete  Boolean
+  isCurrent   Boolean   @default(false)
+  isComplete  Boolean   @default(false)
   Execution   Execution @relation(fields: [executionId], references: [id])
   executionId Int
 }
